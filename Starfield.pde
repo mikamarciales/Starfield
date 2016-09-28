@@ -1,18 +1,21 @@
-NormalParticle [] starfield;
+Particle[] starfield;
 
 void setup()
 {
 	size(1000, 800);
 	background(0);
-	starfield = new NormalParticle[20];
-	for(int i = 0; i < starfield.length, i++)
+	starfield = new Particle[100];
+	for(int i = 0; i < starfield.length; i++)
 	{
 		starfield[i] = new NormalParticle();
+		starfield[0] = new OddballParticle();
+		starfield[1] = new JumboParticle();
 	}
 }
 
 void draw()
 {
+	//background(0);
 	fill(0, 0, 0, 25);
 	noStroke();
 	rect(-5, -5, 1005, 805);
@@ -23,14 +26,14 @@ void draw()
  	}
 }
 
-class NormalParticle
+class NormalParticle implements Particle
 {
 	double dX, dY, dSpeed, dTheta;
 	int dColor;
 	NormalParticle()
 	{
-		dTheta = Math.random()*(2*Math.PI);
-		dSpeed = Math.random()*10;
+		dTheta = (Math.random())*(2*Math.PI);
+		dSpeed = (Math.random())*10;
 		dX = 500;
 		dY = 400;
 		dColor = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
@@ -43,23 +46,38 @@ class NormalParticle
 	}
 	void show()
 	{
+		noStroke();
 		fill(dColor);
-		ellipse(dX, dY, 10, 10);
+		ellipse((float)dX, (float)dY, 10, 10);
 	}
 }
 
 interface Particle
 {
-	//your code here
+	public void show();
+	public void move();
 }
 
-class OddballParticle //uses an interface
+class OddballParticle implements Particle
 {
-	//your code here
+	public void show()
+	{
+		fill(255);
+		ellipse(500, 400, 20, 20);
+	}
+	public void move()
+	{
+
+	}
 }
 
-class JumboParticle //uses inheritance
+class JumboParticle extends NormalParticle
 {
-	//your code here
+	void show()
+	{
+		noStroke();
+		fill(dColor);
+		ellipse((float)dX, (float)dY, 50, 50);
+	}
 }
 
