@@ -4,7 +4,7 @@ void setup()
 {
 	size(1000, 800);
 	background(0);
-	starfield = new Particle[100];
+	starfield = new Particle[500];
 	for(int i = 0; i < starfield.length; i++)
 	{
 		starfield[i] = new NormalParticle();
@@ -43,6 +43,10 @@ class NormalParticle implements Particle
 	{
 		dX = dX + Math.cos(dTheta)*dSpeed;
 		dY = dY + Math.sin(dTheta)*dSpeed;
+		if (dX > 1000)
+		{
+			dX = dX - Math.cos(dTheta)*dSpeed;
+		}
 	}
 	void show()
 	{
@@ -63,7 +67,7 @@ class OddballParticle implements Particle
 	public void show()
 	{
 		fill(255);
-		ellipse(500, 400, 20, 20);
+		ellipse(mouseX, mouseY, 20, 20);
 	}
 	public void move()
 	{
