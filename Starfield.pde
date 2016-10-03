@@ -41,12 +41,24 @@ class NormalParticle implements Particle
 	}
 	void move()
 	{
-		dX = dX + Math.cos(dTheta)*dSpeed;
-		dY = dY + Math.sin(dTheta)*dSpeed;
-		if (dX > 1000)
-		{
-			dX = dX - Math.cos(dTheta)*dSpeed;
-		}
+		dX = dX + (Math.cos(dTheta)*dSpeed);
+		dY = dY + (Math.sin(dTheta)*dSpeed);
+		//if (dX > 1000)
+		//{
+		//	dX -= 1000;
+		//}
+		//if (dX < 0)
+		//{
+		//	dX += 1000;;
+		//}
+		//if (dY > 800)
+		//{
+		//	dY -= 1000;
+		//}
+		//if (dY < 0)
+		//{
+		//	dY += 1000;
+		//}
 	}
 	void show()
 	{
