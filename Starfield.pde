@@ -9,7 +9,7 @@ void setup()
 	{
 		starfield[i] = new NormalParticle();
 	}
-	for(int i = 0; i < starfield.length/5; i++)
+	for(int i = 0; i < starfield.length/10; i++)
 	{
 		starfield[i] = new OddballParticle();		
 	}
@@ -47,27 +47,9 @@ class NormalParticle implements Particle
 	{
 		dX = dX + (Math.cos(dTheta)*dSpeed);
 		dY = dY + (Math.sin(dTheta)*dSpeed);
-		//if (dX > 1000)
-		//{
-		//	dX -= 1000;
-		//}
-		//if (dX < 0)
-		//{
-		//	dX += 1000;;
-		//}
-		//if (dY > 800)
-		//{
-		//	dY -= 1000;
-		//}
-		//if (dY < 0)
-		//{
-		//	dY += 1000;
-		//}
 	}
 	void show()
 	{
-		//noStroke();
-		//fill(dColor);
 		stroke(dColor);
 		fill(0);
 		ellipse((float)dX, (float)dY, dSize, dSize);
@@ -88,9 +70,12 @@ class OddballParticle implements Particle
 	{
 		oX = 500;
 		oY = 400;
+		//oX = mouseX;
+		//oY = mouseY;
 		oSize = (int)(Math.random()*7);
 		oTheta = (Math.random())*(2*Math.PI);
-		oSpeed = (Math.random())*10;
+		//oSpeed = (Math.random())*10;
+		oSpeed = 5;
 		oColor = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
 	}
 	public void show()
@@ -113,11 +98,11 @@ class OddballParticle implements Particle
 		}
 		if (oY > 800)
 		{
-			oY -= 1000;
+			oY -= 800;
 		}
 		if (oY < 0)
 		{
-			oY += 1000;
+			oY += 800;
 		}
 	}
 }
@@ -144,7 +129,7 @@ void mousePressed()
 	{
 		starfield[i] = new NormalParticle();
 	}
-	for(int i = 0; i < starfield.length/4; i++)
+	for(int i = 0; i < starfield.length/10; i++)
 	{
 		starfield[i] = new OddballParticle();		
 	}
