@@ -9,7 +9,10 @@ void setup()
 	{
 		starfield[i] = new NormalParticle();
 	}
-		starfield[0] = new OddballParticle();
+	for(int i = 0; i < starfield.length/5; i++)
+	{
+		starfield[i] = new OddballParticle();		
+	}
 		starfield[1] = new JumboParticle();
 }
 
@@ -80,22 +83,42 @@ interface Particle
 class OddballParticle implements Particle
 {
 	double oX, oY, oTheta, oSpeed;
+	int oColor, oSize;
 	OddballParticle()
 	{
-		oX = mouseX;
-		oY = mouseY;
+		oX = 500;
+		oY = 400;
+		oSize = (int)(Math.random()*7);
 		oTheta = (Math.random())*(2*Math.PI);
 		oSpeed = (Math.random())*10;
+		oColor = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
 	}
 	public void show()
 	{
+		stroke(oColor);
 		fill(255);
-		ellipse((float)oX, (float)oY, 20, 20);
+		ellipse((float)oX, (float)oY, oSize, oSize);
 	}
 	public void move()
 	{
-		//oX = mouseX + (Math.cos(oTheta)*oSpeed);
-		//oY = mouseY + (Math.sin(oTheta)*oSpeed);
+		oX = oX + (Math.cos(oTheta)*oSpeed);
+		oY = oY + (Math.sin(oTheta)*oSpeed);
+		if (oX > 1000)
+		{
+			oX -= 1000;
+		}
+		if (oX < 0)
+		{
+			oX += 1000;;
+		}
+		if (oY > 800)
+		{
+			oY -= 1000;
+		}
+		if (oY < 0)
+		{
+			oY += 1000;
+		}
 	}
 }
 
@@ -104,7 +127,7 @@ class JumboParticle extends NormalParticle
 	int jSize;
 	JumboParticle()
 	{
-		jSize = (int)(Math.random()*20)+20;
+		jSize = (int)(Math.random()*30)+30;
 
 	}
 	void show()
@@ -121,7 +144,10 @@ void mousePressed()
 	{
 		starfield[i] = new NormalParticle();
 	}
-		starfield[0] = new OddballParticle();
+	for(int i = 0; i < starfield.length/4; i++)
+	{
+		starfield[i] = new OddballParticle();		
+	}
 		starfield[1] = new JumboParticle();
 }
 
