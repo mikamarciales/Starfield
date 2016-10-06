@@ -18,7 +18,6 @@ void setup()
 
 void draw()
 {
-	//background(0);
 	fill(0, 0, 0, 25);
 	noStroke();
 	rect(-5, -5, 1005, 805);
@@ -39,7 +38,7 @@ class NormalParticle implements Particle
 		dSpeed = (Math.random())*10;
 		dX = mouseX;
 		dY = mouseY;
-		dColor = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
+		dColor = color((int)(Math.random()*156)+100, (int)(Math.random()*156)+100, (int)(Math.random()*156)+100);
 		dSize = (int)(Math.random()*7);
 
 	}
@@ -50,8 +49,10 @@ class NormalParticle implements Particle
 	}
 	void show()
 	{
-		stroke(dColor);
-		fill(0);
+		//stroke(dColor);
+		//fill(0);
+		noStroke();
+		fill(dColor);
 		ellipse((float)dX, (float)dY, dSize, dSize);
 	}
 }
@@ -76,12 +77,15 @@ class OddballParticle implements Particle
 		oTheta = (Math.random())*(2*Math.PI);
 		//oSpeed = (Math.random())*10;
 		oSpeed = 5;
-		oColor = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
+		//oColor = color((int)(Math.random()*256), (int)(Math.random()*256), (int)(Math.random()*256));
+		oColor = color((int)(Math.random()*255));
 	}
 	public void show()
 	{
-		stroke(oColor);
-		fill(255);
+		//stroke(oColor);
+		//fill(255);
+		noStroke();
+		fill(oColor);
 		ellipse((float)oX, (float)oY, oSize, oSize);
 	}
 	public void move()
@@ -135,4 +139,3 @@ void mousePressed()
 	}
 		starfield[1] = new JumboParticle();
 }
-
